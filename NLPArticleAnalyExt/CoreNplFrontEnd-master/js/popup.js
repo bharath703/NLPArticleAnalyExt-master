@@ -1,7 +1,7 @@
 //Pure JS code with jQuery implementation
 
 var url = null;
-
+debugger;
 document.addEventListener('DOMContentLoaded', function() {
   var Button = document.getElementById('checkArticle');
   Button.addEventListener('click', function() {
@@ -25,13 +25,20 @@ document.addEventListener('DOMContentLoaded', function() {
             // alert(JSON.stringify(data));
             if(data.success)
             {
+
               var companyObj = data.companiesPresent;
+              var saveArr = [];
               alert("The portfolio companies are present in this article. The companies present are " + companyObj);
-              chrome.storage.sync.set({ "ArticleLinks": url }, function(){
+              chrome.storage.sync.get(/* String or Array */["ArticleLinks"], function(items){
+                // console.log(items.ArticleLinks);
+                saveArr.push(items.ArticleLinks);
+                // console.log(saveArr);
+                });
+                saveArr.push(url);
+                // console.log(saveArr);
+              chrome.storage.sync.set({ "ArticleLinks": saveArr }, function(){
                 
             });
-
-
 
             }
             else
@@ -48,10 +55,10 @@ chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
   url = tabs[0].url;
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-  var Button = document.getElementById('savedData');
+// document.addEventListener('DOMContentLoaded', function() {
+//   var Button = document.getElementById('savedData');
   
-  }, false);
+//   }, false);
 
 
 

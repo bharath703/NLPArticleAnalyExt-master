@@ -3,35 +3,21 @@ document.addEventListener('DOMContentLoaded', function() {
 chrome.storage.sync.get(/* String or Array */["ArticleLinks"], function(items){
     //  items = [ { "yourBody": "myBody" } ]
     // console.log('Value currently is ' + items.ArticleLinks);
+    // var str = items.ArticleLinks;
+    // var result = str.link(items.ArticleLinks);
+    // addressLinks.innerHTML = result;
     addressLinks.innerHTML = items.ArticleLinks;
+    document.write("<a href='"+items.ArticleLinks+"'>"+items.ArticleLinks+"</a>")
 });
+
+// var testArray=["test", "teste", "testes"];
+
+// chrome.storage.sync.set({
+//     list:testArray
+// }, function() {
+//     console.log("added to list");
+// });
+// var testArray = document.getElementById('testArray');
+
 	 }, false);
 
-debugger;
-var testArray=["test", "teste", "testes"];
-
-chrome.storage.sync.set({
-    list:testArray
-}, function() {
-    console.log("added to list");
-});
-
-chrome.storage.sync.get({
-    list:[]; //put defaultvalues if any
-},
-function(data) {
-   console.log(data.list);
-   update(data.list); //storing the storage value in a variable and passing to update function
-}
-);  
-
-function update(array)
-   {
-    array.push("testAdd");
-    //then call the set to update with modified value
-    chrome.storage.sync.set({
-        list:array
-    }, function() {
-        console.log("added to list with new values");
-    });
-    }
