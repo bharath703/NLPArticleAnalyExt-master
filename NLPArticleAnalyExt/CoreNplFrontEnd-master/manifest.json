@@ -1,0 +1,21 @@
+{
+   "author": "Bharath",
+   "browser_action": {
+      "default_icon": "img/nlpIcon.png",
+      "default_popup": "popup.html"
+   },
+   "content_scripts": [ {
+      "js": [ "js/jquery.min.js", "js/popup.js", "js/material.min.js","js/popup2.js" ],
+      "css": [ "css/style.css" , "css/material.min.css"],
+      "matches": [ "<all_urls>" ]
+   } ],
+   "background": {
+    "scripts": ["background.js"],
+     "persistent": false
+  },
+   "description": "This is the extension which process the data on the acticle and gives us teh result about the portfolio companies",
+   "manifest_version": 2,
+   "name": "NLP Artice Analyser",
+   "permissions": ["tabs", "activeTab","storage"],
+   "version": "1.2"
+}
